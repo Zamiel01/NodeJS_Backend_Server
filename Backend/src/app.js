@@ -1,8 +1,12 @@
 import express from "express";
+import { generalLimiter } from "./middlewares/rateLimiter.js";
 
 const app = express(); //creates an express app
 
 app.use(express.json()); //gives our server the ability to parse the json requet it gets
+
+// Apply general rate limiting to all routes
+app.use(generalLimiter);
 
 //routes would be added here
 import userRouter from "./routes/user.route.js";
